@@ -27,6 +27,9 @@ C
 <script lang="ts" setup>
 import { onMounted, ref, watch } from 'vue';
 import { ButtonComponent } from '../components/ButtonComponent.vue';
+
+
+
 </script>
 
 <style lang="scss" scoped>
