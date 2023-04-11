@@ -1,4 +1,4 @@
-export function getUsers(range: number) {
+export function loadUsers(range: number) {
   return fetch(
     `https://frontend-test-assignment-api.abz.agency/api/v1/users?page=1&count=${range}`
   )

@@ -9,27 +9,39 @@ C
       />
     </div>
     <div class="name">
-      <span>Salvador Stewart Flynn Thomas Salva Maria Pedro Huan </span>
+      <span> {{ user.name }}</span>
     </div>
     <div class="info">
-      <span
-        >Leading specialist of the department of evaluating and prognoses web
-        research vision
-      </span>
+      <span> {{ user.position }} </span>
       <br />
-      <span>frontend_develop@gmail.com </span>
+      <span>{{ user.email }}</span>
       <br />
-      <span>+38 (098) 278 76 24 </span>
+      <span>{{ user.phone }} </span>
     </div>
   </div>
 </template>
 <!-- non-breaking hyphen &#8209; -->
 <script lang="ts" setup>
-import { onMounted, ref, watch } from 'vue';
-import { ButtonComponent } from '../components/ButtonComponent.vue';
+import { onMounted, ref, watch, defineProps } from 'vue';
+import { IUser } from '../interfaces';
 
-
-
+const props = defineProps({
+  user: {
+    type: Object as () => IUser,
+    default: {
+      email: 'fwef@fsf.com',
+      id: 14128,
+      name: 'Salvador Stewart Flynn Thomas Salva Maria Pedro Huan',
+      phone: '+380662341212',
+      photo:
+        'https://frontend-test-assignment-api.abz.agency/images/users/64354c1a5aaca14128.jpeg',
+      position:
+        'Leading specialist of the department of evaluating and prognoses web research vision',
+      position_id: 2,
+      registration_timestamp: 1681214490,
+    },
+  },
+});
 </script>
 
 <style lang="scss" scoped>
@@ -39,7 +51,7 @@ import { ButtonComponent } from '../components/ButtonComponent.vue';
   padding: 20px;
 }
 .avatar > img {
-//   border: 1px solid red;
+  //   border: 1px solid red;
   border-radius: 50%;
 }
 .info {
