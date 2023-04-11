@@ -5,8 +5,7 @@ import LoginPage from './layouts/LoginPage.vue';
 
 <template>
   <div class="main-container">
-    <HomePage />
-    <LoginPage />
+    <router-view></router-view>
   </div>
 </template>
 
@@ -17,8 +16,9 @@ import LoginPage from './layouts/LoginPage.vue';
   display: flex;
   margin: 0 auto;
   padding: 0;
-  background-image:  url('./assets/pexels-alexandr-podvalny-1227513.jpeg');
-  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url('./assets/pexels-alexandr-podvalny-1227513.jpeg') ;
+  background-image: url('./assets/pexels-alexandr-podvalny-1227513.jpeg');
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('./assets/pexels-alexandr-podvalny-1227513.jpeg');
   height: 100%;
   /* background-size: cover; */
   background-position: 25% 75%;
