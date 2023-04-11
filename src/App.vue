@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import HomePage from './layouts/HomePage.vue';
-import LoginPage from './layouts/LoginPage.vue';
+import MainPage from './layouts/MainPage.vue';
 </script>
 
 <template>
   <div class="main-container">
-    <router-view></router-view>
+    <!-- <router-view></router-view> -->
+    <main-page></main-page>
   </div>
 </template>
 
