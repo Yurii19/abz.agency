@@ -2,6 +2,7 @@
   <div class="my-template">
     <WellcomeComponent />
     <UsersComponent />
+    <FormComponent />
   </div>
 </template>
 <!-- non-breaking hyphen &#8209; -->
@@ -9,6 +10,7 @@
 import { onMounted, ref, watch } from 'vue';
 import WellcomeComponent from '../components/WellcomeComponent.vue';
 import UsersComponent from '../components/UsersComponent.vue';
+import FormComponent from '../components/FormComponent.vue';
 </script>
 
 <style lang="scss" scoped>

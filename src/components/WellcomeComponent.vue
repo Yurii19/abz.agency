@@ -11,7 +11,9 @@
         Front&#8209;End Development keeps evolving .
       </span>
       <br />
-      <div class="button-container"><ButtonComponent :text="'Sign up'" /></div>
+      <div class="button-container">
+        <ButtonComponent :text="'Sign up'" />
+      </div>
     </div>
   </div>
 </template>

@@ -4,7 +4,7 @@ C
     <div class="avatar">
       <img
         width="100"
-        src="https://media.istockphoto.com/id/1126163079/vector/electric-plug-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=mPmDvDrXgJE93ciOboJMAMamuWinxMv36Fw_4kb_Cf0="
+        :src="user.photo"
         alt=""
       />
     </div>
@@ -46,7 +46,7 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .wrap {
-  background-color: rgba(0, 0, 0, 0.3) !important;
+  background-color: white !important;
   width: 300px;
   padding: 20px;
 }

@@ -1,10 +1,12 @@
 <template>
   <div class="wrap">
     <span class="header">Working with GET request</span>
-    <span class="user" v-for="user in store.getUsers" :key="user">
-      <UserCard :user="user" />
-    </span>
-    <!-- <button @click=""></button> -->
+    <div class="users-container">
+      <span class="user" v-for="user in store.getUsers" :key="user">
+        <UserCard :user="user" />
+      </span>
+    </div>
+    <ButtonComponent :text="'Show more'" />
   </div>
 </template>
 <!-- non-breaking hyphen &#8209; -->
@@ -12,6 +14,7 @@
 import { onMounted, ref, watch } from 'vue';
 import UserCard from '../components/UserCard.vue';
 import { useAppStore } from '../store';
+import ButtonComponent from '../components/ButtonComponent.vue';
 
 const store = useAppStore();
 
@@ -25,8 +28,14 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .wrap {
-  background-color: white;
+  background-color: #f8f8f8;
   text-align: center;
+  .users-container {
+    border: 1px dotted red;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
 }
 .header {
   font-size: 40px;
@@ -35,5 +44,6 @@ onMounted(() => {
 }
 .user {
   display: inline-block;
+  margin-bottom: 20px;
 }
 </style>
