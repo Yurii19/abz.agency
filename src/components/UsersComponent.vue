@@ -10,16 +10,16 @@ import { onMounted, ref, watch } from 'vue';
 import UserCard from '../components/UserCard.vue';
 
 onMounted(() => {
-  fetch(
-    'https://frontend-test-assignment-api.abz.agency/api/v1/users?page=1&count=5'
-  )
-    .then((response) => response.json())
-    .then(
-      (data) => console.log(data)
-      // if(data.success) {
-      //   process success response } else { // proccess server errors } })
-    );
-});
+//   fetch(
+//     'https://frontend-test-assignment-api.abz.agency/api/v1/users?page=1&count=5'
+//   )
+//     .then((response) => response.json())
+//     .then(
+//       (data) => console.log(data)
+//       // if(data.success) {
+//       //   process success response } else { // proccess server errors } })
+//     );
+ });
 </script>
 
 <style lang="scss" scoped>
