@@ -40,7 +40,29 @@
           <v-radio label="Designer" color="#00bdd3" value="designer"></v-radio>
           <v-radio label="QA" color="#00bdd3" value="tester"></v-radio>
         </v-radio-group>
-        <v-textarea clearable label="Label" variant="outlined"></v-textarea>
+        <v-textarea
+          label="Enter your message"
+          v-model="photo"
+          height="200"
+          variant="outlined"
+        >
+          <template #prepend-inner>
+            <v-file-input label="File input" variant="solo"></v-file-input>
+          </template>
+        </v-textarea>
+        <div class="input-file">
+          <v-file-input label="" variant="outlined">
+            <template #prepend-inner>
+              <v-btn
+                class="elevation-0 d-inline-block py-2"
+               variant="outlined"
+                @click="getModels"
+              >
+                Button
+              </v-btn>
+            </template>
+          </v-file-input>
+        </div>
         <v-btn
           class="elevation-0"
           :rounded="true"
@@ -74,6 +96,7 @@ const name = ref('');
 const email = ref('');
 const phone = ref('');
 const position = ref('');
+const photo = ref('');
 
 const rules = [
   (value: string): any => {
@@ -97,6 +120,9 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.input-file {
+  // border: 2px solid red;
+}
 .wrap {
   // background-color: #f8f8f8;
   text-align: center;

@@ -1,0 +1,4 @@
+@use 'vuetify/settings' with (
+  $button-banner-actions-padding: 16px,
+  $button-height: 42px,
+);
