@@ -17,6 +17,17 @@ body {
   height: 100vh;
   font-family: 'Nunito Sans', sans-serif;
   background-color: $app-bg;
+  // width: 2560px;
+  // margin: 0 auto;
+  background-color: $app-bg;
+}
+.v-main, .v-form{
+  background-color: $app-bg;
+}
+#app{
+  max-width: 2560px;
+  margin: 0 auto;
+
 }
 
 .v-btn {

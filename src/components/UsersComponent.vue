@@ -1,8 +1,8 @@
 <template>
-  <div class="wrap">
+  <div class="wrap py-16 px-16">
     <span class="header">Working with GET request</span>
     <div class="users-container">
-      <span class="user" v-for="user in store.getUsers" :key="user">
+      <span class="user mx-5 py-5" v-for="user in store.getUsers" :key="user">
         <UserCard :user="user" />
       </span>
     </div>
@@ -30,11 +30,12 @@ onMounted(() => {
 .wrap {
   background-color: #f8f8f8;
   text-align: center;
+  // padding: 50px 50px 50px 50px;
   .users-container {
     border: 1px dotted red;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
   }
 }
 .header {
@@ -44,6 +45,6 @@ onMounted(() => {
 }
 .user {
   display: inline-block;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 }
 </style>

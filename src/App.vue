@@ -27,7 +27,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-  body {
-    border: 3px dotted green;
-  }
+  // body {
+  //   border: 3px dotted green;
+  // }
 </style>

@@ -1,6 +1,6 @@
 C
 <template>
-  <div class="wrap">
+  <div class="wrap ">
     <div class="avatar">
       <img
         width="100"

@@ -30,7 +30,11 @@ import { onMounted, ref, watch } from 'vue';
   // border: 1px solid red;
   //   display: flex;
   //   flex: 1;
+  // margin: 0 auto;
   min-height: 95vh;
+  width: 100%;
+  padding-top: 10%;
+ 
 }
 .container {
   color: white;
@@ -38,6 +42,7 @@ import { onMounted, ref, watch } from 'vue';
   margin: 0 auto;
   text-align: center;
   // margin-top: 15%;
+  // border: 1px solid chartreuse;
   span {
     // border: 1px dotted red;
   }
