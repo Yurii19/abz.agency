@@ -21,13 +21,30 @@ body {
   // margin: 0 auto;
   background-color: $app-bg;
 }
-.v-main, .v-form{
+.v-main,
+.v-form {
   background-color: $app-bg;
 }
-#app{
+.v-field--appended {
+  padding-left: 0;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  // border-color: red !important;
+  // &.v-field--active{
+  //   border-color: red;
+  //   background-color: violet;
+  // }
+}
+.v-file-input {
+  * {
+    border-color: rgba(0, 0, 0, 0.5) !important;
+  }
+}
+// .v-input__control {
+//   border-color: red !important;
+// }
+#app {
   max-width: 2560px;
   margin: 0 auto;
-
 }
 
 .v-btn--rounded {
@@ -39,9 +56,21 @@ body {
   // background-color: $app-primary !important;
   padding-left: 25px;
   padding-right: 25px;
-  color:black;
+  color: black;
   &:hover {
     background-color: $app-primary-muted !important;
+  }
+}
+.v-input__prepend {
+  display: none;
+}
+.v-field__prepend-inner {
+  margin: 0;
+  padding: 0;
+  //
+  & .v-btn {
+    display: flex !important;
+    height: inherit;
   }
 }
 

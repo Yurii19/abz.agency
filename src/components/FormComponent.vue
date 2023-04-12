@@ -40,26 +40,13 @@
           <v-radio label="Designer" color="#00bdd3" value="designer"></v-radio>
           <v-radio label="QA" color="#00bdd3" value="tester"></v-radio>
         </v-radio-group>
-        <v-textarea
-          label="Enter your message"
-          v-model="photo"
-          height="200"
-          variant="outlined"
-        >
-          <template #prepend-inner>
-            <v-file-input label="File input" variant="solo"></v-file-input>
-          </template>
-        </v-textarea>
+
         <div class="input-file">
-          <v-file-input label="" variant="outlined">
+          <v-file-input :placeholder="'input a file'" variant="outlined">
             <template #prepend-inner>
-              <v-btn
-                class="elevation-0 d-inline-block py-2"
-               variant="outlined"
-                @click="getModels"
-              >
-                Button
-              </v-btn>
+              <div class="upload px-3">
+                <span>Upload</span>
+              </div>
             </template>
           </v-file-input>
         </div>
@@ -73,14 +60,6 @@
         </v-btn>
       </v-form>
     </v-sheet>
-    <v-btn
-      class="elevation-0"
-      :rounded="true"
-      color="#f4e041"
-      @click="getModels"
-    >
-      Button
-    </v-btn>
   </div>
 </template>
 <!-- non-breaking hyphen &#8209; -->
@@ -120,9 +99,15 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.input-file {
-  // border: 2px solid red;
+.upload {
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
 }
+
 .wrap {
   // background-color: #f8f8f8;
   text-align: center;

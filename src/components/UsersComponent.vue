@@ -2,7 +2,7 @@
   <div class="wrap py-16 px-16">
     <span class="header">Working with GET request</span>
     <div class="users-container">
-      <span class="user mx-5 py-5" v-for="user in store.getUsers" :key="user">
+      <span class="user mx-6 my-3" v-for="user in store.getUsers" :key="user">
         <UserCard :user="user" />
       </span>
     </div>
