@@ -12,7 +12,7 @@
       </span>
       <br />
       <div class="button-container">
-        <ButtonComponent :text="'Sign up'" />
+        <v-btn class=" elevation-0" :rounded="true" color="#f4e041"> Sign up </v-btn>
       </div>
     </div>
   </div>
@@ -20,7 +20,6 @@
 <!-- non-breaking hyphen &#8209; -->
 <script lang="ts" setup>
 import { onMounted, ref, watch } from 'vue';
-import ButtonComponent from '../components/ButtonComponent.vue';
 </script>
 
 <style lang="scss" scoped>

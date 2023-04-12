@@ -25,7 +25,7 @@
       </v-form>
     </v-sheet>
     <v-text-field label="Label" variant="outlined"></v-text-field>
-    <v-btn class="rounded-pill elevation-0" color="#f4e041"> Button </v-btn>
+    <v-btn class="elevation-0" :rounded="true" color="#f4e041"> Button </v-btn>
   </div>
 </template>
 <!-- non-breaking hyphen &#8209; -->

@@ -1,19 +1,44 @@
 @use 'vuetify' with (
   $utilities: false,
-  $color-pack: false,
-  
+  $color-pack: false
 );
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
-.v-btn{
-  height: 150px !important;
-}
 
+$app-primary: #f4e041;
+$app-primary-muted: #ffe302;
+$app-secondary: #00bdd3;
+$app-bg: #f8f8f8;
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   /* border: 1px dotted rgb(255, 0, 0); */
   height: 100vh;
   font-family: 'Nunito Sans', sans-serif;
-  background-color: #F8F8F8;
+  background-color: $app-bg;
 }
+
+.v-btn {
+  height: 40px !important;
+  font-size: 16px;
+  text-transform: none;
+  font-family: 'Nunito Sans', sans-serif;
+  letter-spacing: normal;
+  // background-color: $app-primary !important;
+  padding-left: 25px;
+  padding-right: 25px;
+  color:black;
+  &:hover {
+    background-color: $app-primary-muted !important;
+  }
+}
+
+// .v-input__control{
+//   & *{
+//     border-width: 1px;
+//    }
+// }
+// .v-field--focused {
+//  background-color: #00bdd3;
+// }
