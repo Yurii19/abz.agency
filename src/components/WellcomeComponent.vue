@@ -58,6 +58,6 @@ import { onMounted, ref, watch } from 'vue';
   }
 }
 .button-container {
-  margin-top: 30px;
+  margin-top: 35px;
 }
 </style>

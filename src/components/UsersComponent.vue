@@ -19,7 +19,7 @@ import ButtonComponent from '../components/ButtonComponent.vue';
 const store = useAppStore();
 
 onMounted(() => {
-  store.upadateUsers(4);
+  // store.upadateUsers(4);
 });
 // function getusers(){
 //     console.log()
@@ -30,12 +30,14 @@ onMounted(() => {
 .wrap {
   background-color: #f8f8f8;
   text-align: center;
+  margin-top: 50px;
   // padding: 50px 50px 50px 50px;
   .users-container {
-    border: 1px dotted red;
+    // border: 1px dotted red;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 30px;
   }
 }
 .header {

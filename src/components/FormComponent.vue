@@ -40,6 +40,7 @@
           <v-radio label="Designer" color="#00bdd3" value="designer"></v-radio>
           <v-radio label="QA" color="#00bdd3" value="tester"></v-radio>
         </v-radio-group>
+        <v-textarea clearable label="Label" variant="outlined"></v-textarea>
         <v-btn
           class="elevation-0"
           :rounded="true"
@@ -100,6 +101,7 @@ onMounted(() => {
   // background-color: #f8f8f8;
   text-align: center;
   margin-bottom: 50px;
+  margin-top: 50px;
 }
 .header {
   font-size: 40px;
