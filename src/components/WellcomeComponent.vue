@@ -25,7 +25,10 @@ import ButtonComponent from '../components/ButtonComponent.vue';
 
 <style lang="scss" scoped>
 .wrap {
-  border: 1px solid red;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../assets/pexels-alexandr-podvalny-1227513.jpeg');
+  background-position: 25% 75%;
+  // border: 1px solid red;
   //   display: flex;
   //   flex: 1;
   min-height: 95vh;
@@ -35,7 +38,7 @@ import ButtonComponent from '../components/ButtonComponent.vue';
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
-  margin-top: 15%;
+  // margin-top: 15%;
   span {
     // border: 1px dotted red;
   }

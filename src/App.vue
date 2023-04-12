@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <v-main>
-      <HelloWorld/>
       <MainPage/>
     </v-main>
   </v-app>
@@ -27,3 +26,8 @@ export default defineComponent({
   },
 })
 </script>
+<style lang="scss" scoped>
+  body {
+    border: 3px dotted green;
+  }
+</style>

@@ -3,7 +3,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  /* border: 1px dotted rgb(46, 197, 91); */
+  /* border: 1px dotted rgb(255, 0, 0); */
   height: 100vh;
   font-family: 'Nunito Sans', sans-serif;
   background-color: #F8F8F8;
@@ -13,6 +13,7 @@ html, body {
   padding: 0;
   height: 100%;
 }
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -93,3 +94,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+

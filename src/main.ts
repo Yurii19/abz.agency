@@ -3,6 +3,8 @@ import App from './App.vue';
 import vuetify from './plugins/vuetify';
 import { loadFonts } from './plugins/webfontloader';
 import { createPinia } from 'pinia';
+import './style.css'
+import './main.scss'
 const pinia = createPinia();
 
 loadFonts();
