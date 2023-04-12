@@ -1,0 +1,7 @@
+$btn-font-weight: 600;
+$text-field-input-padding-start: 30px;
+@use 'vuetify' with (
+  $utilities: false,
+  $color-pack: false,
+  $btn-font-weight: 600
+);

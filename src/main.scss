@@ -1,4 +1,19 @@
 @use 'vuetify' with (
   $utilities: false,
   $color-pack: false,
+  
 );
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+.v-btn{
+  height: 150px !important;
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  /* border: 1px dotted rgb(255, 0, 0); */
+  height: 100vh;
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: #F8F8F8;
+}
