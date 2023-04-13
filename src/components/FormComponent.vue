@@ -23,22 +23,20 @@
           :rules="rules.phoneRules"
           label="Phone"
           type="tel"
+          hint="+38(xxx)xxx-xx-xx"
+          persistent-hint
         ></v-text-field>
         <!-- <v-btn type="submit" block class="mt-2">Submit</v-btn> -->
 
         <v-radio-group v-model="position" :rules="rules.empty" column>
           <v-radio
-            label="Frontend developer"
+            v-for="pos in positions"
+            :key="pos.id"
+            :label="pos.name"
             color="#00bdd3"
-            value="frontend"
+            :value="pos.id"
+            class="d-flex justify-content-start"
           ></v-radio>
-          <v-radio
-            label="Backend developer"
-            color="#00bdd3"
-            value="backend"
-          ></v-radio>
-          <v-radio label="Designer" color="#00bdd3" value="designer"></v-radio>
-          <v-radio label="QA" color="#00bdd3" value="tester"></v-radio>
         </v-radio-group>
 
         <div class="input-file">
@@ -75,7 +73,7 @@
 import { onMounted, ref, watch } from 'vue';
 import UserCard from '../components/UserCard.vue';
 import { useAppStore } from '../store';
-import { loadToken } from '../services';
+import { loadPositionsIds } from '../services';
 import { nameRule, emailRule, phoneRule } from '../services';
 import ButtonComponent from '../components/ButtonComponent.vue';
 
@@ -83,31 +81,27 @@ const store = useAppStore();
 
 const name = ref<string>('');
 const email = ref<string>('');
-const phone = ref<string>('+380');
+const phone = ref<string>('');
 const position = ref<string>('');
 //const photo = ref();
-
 const fileErrors = ref<string[]>([]);
+const positions = ref([{ id: 1, name: 'Worker' }]);
 
 const rules = {
   empty: [
     (value: string): boolean | string => {
       if (value) return true;
-      return 'incorrect';
+      return 'Input a value';
     },
   ],
-  nameRules: [(value: string) => nameRule(value)],
-  emailRules: [(value: string) => emailRule(value)],
-  phoneRules: [(value: string) => phoneRule(value)],
+  nameRules: [(value: string): boolean | string => nameRule(value)],
+  emailRules: [(value: string): boolean | string => emailRule(value)],
+  phoneRules: [(value: string): boolean | string => phoneRule(value)],
 };
-
-const nameRules = [
-  nameRule(name.value),
-  //emptyValueRule(name.value)
-];
 
 onMounted(() => {
   store.upadateUsers(5);
+  loadPositionsIds().then((response) => (positions.value = response.positions));
 });
 
 function onFileChange(e: any) {

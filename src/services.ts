@@ -12,16 +12,13 @@ export function loadToken() {
   // .then((data) => console.log(data));
 }
 
-// export function loadToken() {
-//   return  fetch('https://frontend-test-assignment-api.abz.agency/api/v1/token')
-//       .then(function (response) {
-//         return response.json();
-//       })
-//       .then(function (data) {
-//         console.log(data);
-//       })
-//   ;
-// }
+export function loadPositionsIds() {
+  return fetch(
+    'https://frontend-test-assignment-api.abz.agency/api/v1/positions'
+  ).then((response) => response.json());
+  // .then((data) => console.log(data));
+}
+
 export const nameRule = (value: string): boolean | string => {
   if (!value) return 'Input a value';
   if (value.length >= 2 && value.length <= 60) return true;
@@ -40,10 +37,10 @@ export const phoneRule = (value: string): boolean | string => {
   return 'User phone, must be a valid.';
 };
 
-export const emptyValueRule = (value: string): boolean | string => {
-  if (value.length) return true;
-  return 'Input a value';
-};
+// export const emptyValueRule = (value: string): boolean | string => {
+//   if (value.length) return true;
+//   return 'Input a value';
+// };
 
 const emailPattern =
   /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
