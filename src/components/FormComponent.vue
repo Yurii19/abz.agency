@@ -2,7 +2,7 @@
   <div class="wrap">
     <span class="header">Working with POST request</span>
     <v-sheet width="300" class="mx-auto">
-      <v-form @submit.prevent>
+      <v-form @submit.prevent="submit">
         <v-text-field
           variant="outlined"
           v-model="name"
@@ -26,7 +26,7 @@
         ></v-text-field>
         <!-- <v-btn type="submit" block class="mt-2">Submit</v-btn> -->
 
-        <v-radio-group v-model="position" column>
+        <v-radio-group v-model="position" :rules="rules" column>
           <v-radio
             label="Frontend developer"
             color="#00bdd3"
@@ -42,7 +42,16 @@
         </v-radio-group>
 
         <div class="input-file">
-          <v-file-input :placeholder="'input a file'" variant="outlined">
+          <v-file-input
+            :placeholder="'input a file'"
+            :rules="rules"
+            variant="outlined"
+            v-model="photo"
+            show-size
+            @change="onFileChange"
+             :error-messages="fileErrors"
+             @click:clear="clearFileInput"
+          >
             <template #prepend-inner>
               <div class="upload px-3">
                 <span>Upload</span>
@@ -54,7 +63,7 @@
           class="elevation-0"
           :rounded="true"
           color="#f4e041"
-          @click="getModels"
+          type="submit"
         >
           Sign up
         </v-btn>
@@ -75,27 +84,37 @@ const name = ref('');
 const email = ref('');
 const phone = ref('');
 const position = ref('');
-const photo = ref('');
+const photo = ref();
+
+const fileErrors = ref('')
 
 const rules = [
   (value: string): any => {
     if (value) return true;
+    return 'incorrect';
   },
 ];
-
-function getModels() {
-  console.log('name > ', name.value);
-  console.log('name > ', email.value);
-  console.log('name > ', phone.value);
-  console.log('name > ', position.value);
-}
 
 onMounted(() => {
   store.upadateUsers(4);
 });
-// function getusers(){
-//     console.log()
-// }
+
+function onFileChange(e: any) {
+  var files = e.target.files || e.dataTransfer.files;
+  console.log(files)
+  fileErrors.value = 'Incorrect file type'
+  if (!files.length) return;
+  //this.createImage(files[0]);
+}
+
+function clearFileInput(){
+  fileErrors.value = ''
+}
+
+
+function submit() {
+  console.log('submit');
+}
 </script>
 
 <style lang="scss" scoped>

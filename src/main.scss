@@ -39,6 +39,23 @@ body {
     border-color: rgba(0, 0, 0, 0.5) !important;
   }
 }
+.v-file-input .v-field--error {
+  * {
+    border-color: red !important;
+    
+  }
+ 
+  .upload {
+    border: 2px solid red;
+  }
+  
+}
+.v-file-input .v-field--focused {
+  .upload {
+    border-width: 2px;
+  }
+  
+}
 // .v-input__control {
 //   border-color: red !important;
 // }

@@ -9,7 +9,7 @@ export const useAppStore = defineStore('users', () => {
   function upadateUsers(range: number) {
     // console.log('usersComponent')
     loadUsers(range).then((resp) => {
-      console.log(resp);
+      //console.log(resp);
       users.value = resp.users;
     });
   }
