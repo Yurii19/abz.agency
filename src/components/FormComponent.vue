@@ -6,27 +6,27 @@
         <v-text-field
           variant="outlined"
           v-model="name"
-          :rules="rules"
+          :rules="rules.nameRules"
           label="Your name"
           type="text"
         ></v-text-field>
         <v-text-field
           variant="outlined"
           v-model="email"
-          :rules="rules"
+          :rules="rules.emailRules"
           label="Email"
           type="email"
         ></v-text-field>
         <v-text-field
           variant="outlined"
           v-model="phone"
-          :rules="rules"
+          :rules="rules.phoneRules"
           label="Phone"
           type="tel"
         ></v-text-field>
         <!-- <v-btn type="submit" block class="mt-2">Submit</v-btn> -->
 
-        <v-radio-group v-model="position" :rules="rules" column>
+        <v-radio-group v-model="position" :rules="rules.empty" column>
           <v-radio
             label="Frontend developer"
             color="#00bdd3"
@@ -44,7 +44,7 @@
         <div class="input-file">
           <v-file-input
             :placeholder="'input a file'"
-            :rules="rules"
+            :rules="rules.empty"
             variant="outlined"
             show-size
             @change="onFileChange"
@@ -76,27 +76,38 @@ import { onMounted, ref, watch } from 'vue';
 import UserCard from '../components/UserCard.vue';
 import { useAppStore } from '../store';
 import { loadToken } from '../services';
+import { nameRule, emailRule, phoneRule } from '../services';
 import ButtonComponent from '../components/ButtonComponent.vue';
 
 const store = useAppStore();
 
-const name = ref('');
-const email = ref('');
-const phone = ref('');
-const position = ref('');
+const name = ref<string>('');
+const email = ref<string>('');
+const phone = ref<string>('+380');
+const position = ref<string>('');
 //const photo = ref();
 
 const fileErrors = ref<string[]>([]);
 
-const rules = [
-  (value: string): any => {
-    if (value) return true;
-    return 'incorrect';
-  },
+const rules = {
+  empty: [
+    (value: string): boolean | string => {
+      if (value) return true;
+      return 'incorrect';
+    },
+  ],
+  nameRules: [(value: string) => nameRule(value)],
+  emailRules: [(value: string) => emailRule(value)],
+  phoneRules: [(value: string) => phoneRule(value)],
+};
+
+const nameRules = [
+  nameRule(name.value),
+  //emptyValueRule(name.value)
 ];
 
 onMounted(() => {
-  store.upadateUsers(4);
+  store.upadateUsers(5);
 });
 
 function onFileChange(e: any) {
@@ -129,8 +140,11 @@ function clearFileInput(): void {
 }
 
 function submit(): void {
-  loadToken().then((d)=> console.log(d));
-  console.log('submit');
+  // loadToken().then((d: any) => {
+  //   console.log(d.token);
+  //   store.setToken(d.token);
+  // });
+  console.log('submit', name.value, name.value.length);
 }
 
 function checkImgDimensions(imgSrc: any): void {
@@ -139,7 +153,7 @@ function checkImgDimensions(imgSrc: any): void {
   img.onload = () => {
     const width = img.width;
     const height = img.height;
-    console.log('dimensions ', width, 'x', height);
+    //console.log('dimensions ', width, 'x', height);
     if (width < 70 || height < 70) {
       fileErrors.value = [
         ...fileErrors.value,
