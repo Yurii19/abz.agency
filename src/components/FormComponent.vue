@@ -35,7 +35,6 @@
             :label="pos.name"
             color="#00bdd3"
             :value="pos.id"
-            class="d-flex justify-content-start"
           ></v-radio>
         </v-radio-group>
 
@@ -86,6 +85,7 @@ const position = ref<string>('');
 //const photo = ref();
 const fileErrors = ref<string[]>([]);
 const positions = ref([{ id: 1, name: 'Worker' }]);
+let fileImg: any = null;
 
 const rules = {
   empty: [
@@ -107,7 +107,7 @@ onMounted(() => {
 function onFileChange(e: any) {
   clearFileInput();
   var files = e.target.files || e.dataTransfer.files;
-
+  fileImg = files[0];
   const type = files[0].type;
   const size = files[0].size;
   if (type !== 'image/jpeg') {
@@ -130,15 +130,17 @@ function onFileChange(e: any) {
 }
 
 function clearFileInput(): void {
+  fileImg = null;
   fileErrors.value = [];
 }
 
 function submit(): void {
-  // loadToken().then((d: any) => {
-  //   console.log(d.token);
-  //   store.setToken(d.token);
-  // });
+  //fileErrors.value = ['Unknown error'];
+if(!fileImg){
+  fileErrors.value = ['Select a file'];
+}
   console.log('submit', name.value, name.value.length);
+  console.log('fileImg', fileImg);
 }
 
 function checkImgDimensions(imgSrc: any): void {
