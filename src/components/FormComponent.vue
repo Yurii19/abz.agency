@@ -46,11 +46,10 @@
             :placeholder="'input a file'"
             :rules="rules"
             variant="outlined"
-            v-model="photo"
             show-size
             @change="onFileChange"
-             :error-messages="fileErrors"
-             @click:clear="clearFileInput"
+            :error-messages="fileErrors"
+            @click:clear="clearFileInput"
           >
             <template #prepend-inner>
               <div class="upload px-3">
@@ -84,9 +83,9 @@ const name = ref('');
 const email = ref('');
 const phone = ref('');
 const position = ref('');
-const photo = ref();
+//const photo = ref();
 
-const fileErrors = ref('')
+const fileErrors = ref<string[]>([]);
 
 const rules = [
   (value: string): any => {
@@ -100,20 +99,52 @@ onMounted(() => {
 });
 
 function onFileChange(e: any) {
+  clearFileInput();
   var files = e.target.files || e.dataTransfer.files;
-  console.log(files)
-  fileErrors.value = 'Incorrect file type'
+
+  const type = files[0].type;
+  const size = files[0].size;
+  if (type !== 'image/jpeg') {
+    fileErrors.value = [
+      ...fileErrors.value,
+      'Incorrect file type. Must be jpeg/jpg type',
+    ];
+  }
+  if (size > 10000) {
+    fileErrors.value = [
+      ...fileErrors.value,
+      'The file size exceeds the maximum allowed(5Mb).',
+    ];
+  }
+  checkImgDimensions(files[0]);
+
+  console.log(files);
+
   if (!files.length) return;
-  //this.createImage(files[0]);
 }
 
-function clearFileInput(){
-  fileErrors.value = ''
+function clearFileInput(): void {
+  fileErrors.value = [];
 }
 
-
-function submit() {
+function submit(): void {
   console.log('submit');
+}
+
+function checkImgDimensions(imgSrc: any): void {
+  let img = new Image();
+  img.src = window.URL.createObjectURL(imgSrc);
+  img.onload = () => {
+    const width = img.width;
+    const height = img.height;
+    console.log('dimensions ', width, 'x', height);
+    if (width < 70 || height < 70) {
+      fileErrors.value = [
+        ...fileErrors.value,
+        'The file dimensions too small(70x70 minimum require).',
+      ];
+    }
+  };
 }
 </script>
 
