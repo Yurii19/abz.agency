@@ -14,7 +14,7 @@ body {
   margin: 0;
   padding: 0;
   /* border: 1px dotted rgb(255, 0, 0); */
-  height: 100vh;
+  min-height: 100vh;
   font-family: 'Nunito Sans', sans-serif;
   background-color: $app-bg;
   // width: 2560px;

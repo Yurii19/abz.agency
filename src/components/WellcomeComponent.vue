@@ -31,9 +31,12 @@ import { onMounted, ref, watch } from 'vue';
   //   display: flex;
   //   flex: 1;
   // margin: 0 auto;
-  min-height: 95vh;
+   min-height: 95vh;
+   display: flex;
+   align-items: center;
+  // height: 100%;
   width: 100%;
-  padding-top: 10%;
+  // padding-top: calc();
  
 }
 .container {

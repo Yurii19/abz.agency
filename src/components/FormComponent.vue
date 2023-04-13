@@ -75,6 +75,7 @@
 import { onMounted, ref, watch } from 'vue';
 import UserCard from '../components/UserCard.vue';
 import { useAppStore } from '../store';
+import { loadToken } from '../services';
 import ButtonComponent from '../components/ButtonComponent.vue';
 
 const store = useAppStore();
@@ -128,6 +129,7 @@ function clearFileInput(): void {
 }
 
 function submit(): void {
+  loadToken().then((d)=> console.log(d));
   console.log('submit');
 }
 
