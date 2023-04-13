@@ -2,7 +2,7 @@
   <div class="wrap py-16 px-16">
     <span class="header">Working with GET request</span>
     <div class="users-container">
-      <span class="user mx-6 my-3" v-for="user in store.getUsers" :key="user">
+      <span class="user mx-6 my-6" v-for="user in store.getUsers" :key="user.id">
         <UserCard :user="user" />
       </span>
     </div>
@@ -30,7 +30,7 @@ onMounted(() => {
 .wrap {
   background-color: #f8f8f8;
   text-align: center;
-  margin-top: 50px;
+  // margin-top: 50px;
   // padding: 50px 50px 50px 50px;
   .users-container {
     // border: 1px dotted red;

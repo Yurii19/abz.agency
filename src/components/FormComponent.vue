@@ -2,7 +2,7 @@
   <div class="wrap">
     <span class="header">Working with POST request</span>
     <v-sheet width="300" class="mx-auto">
-      <v-form @submit.prevent="submit">
+      <v-form @submit.prevent="submit" ref="formSrc">
         <v-text-field
           variant="outlined"
           v-model="name"
@@ -72,8 +72,8 @@
 import { onMounted, ref, watch } from 'vue';
 import UserCard from '../components/UserCard.vue';
 import { useAppStore } from '../store';
-import { loadPositionsIds } from '../services';
-import { nameRule, emailRule, phoneRule } from '../services';
+import { loadPositionsIds, loadToken } from '../services';
+import { nameRule, emailRule, phoneRule, addUser } from '../services';
 import ButtonComponent from '../components/ButtonComponent.vue';
 
 const store = useAppStore();
@@ -86,6 +86,7 @@ const position = ref<string>('');
 const fileErrors = ref<string[]>([]);
 const positions = ref([{ id: 1, name: 'Worker' }]);
 let fileImg: any = null;
+const formSrc = ref(null);
 
 const rules = {
   empty: [
@@ -123,9 +124,7 @@ function onFileChange(e: any) {
     ];
   }
   checkImgDimensions(files[0]);
-
   console.log(files);
-
   if (!files.length) return;
 }
 
@@ -134,13 +133,41 @@ function clearFileInput(): void {
   fileErrors.value = [];
 }
 
-function submit(): void {
-  //fileErrors.value = ['Unknown error'];
-if(!fileImg){
-  fileErrors.value = ['Select a file'];
-}
-  console.log('submit', name.value, name.value.length);
+function submit(e: SubmitEvent): void {
+  loadToken()
+  if (!fileImg) {
+    fileErrors.value = ['Select a file'];
+    return;
+  }
+  
+  if (formSrc.value !== null) {
+    const theForm: any = formSrc.value;
+    theForm.validate().then((formState: any) => {
+      if (formState.valid && fileImg) {
+        loadToken().then((resp: any) => resp.token).then((token: string)=>{
+          addUser(createNewUser(), token)
+        })
+        // createNewUser();
+      }
+      console.log('event -> ', formState.valid);
+    });
+  }
+  if (!fileImg) {
+    fileErrors.value = ['Select a file'];
+  }
   console.log('fileImg', fileImg);
+}
+
+function createNewUser() {
+  console.log('sendNewUser()');
+  const formData = new FormData()
+  formData.append('name', name.value)
+  formData.append('email', email.value)
+  formData.append('phone', phone.value)
+  formData.append('position_id', position.value)
+  formData.append('photo', fileImg)
+
+  return formData;
 }
 
 function checkImgDimensions(imgSrc: any): void {
