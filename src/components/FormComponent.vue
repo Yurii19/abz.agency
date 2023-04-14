@@ -1,6 +1,6 @@
 <template>
-  <div class="wrap">
-    <span class="header">Working with POST request</span>
+  <div class="wrap mt-16 ">
+    <span class="header mb-10">Working with POST request</span>
     <v-sheet width="300" class="mx-auto">
       <v-form @submit.prevent="submit" ref="formSrc">
         <v-text-field
@@ -183,7 +183,6 @@ function createNewUser() {
 }
 
 function checkIfFormValid() {
-  console.log(rules.nameRules.values)
   const theForm: any = formSrc.value;
   theForm.validate().then((formState: any) => {
     if (formState.valid && fileImg && fileErrors.value.length === 0) {
