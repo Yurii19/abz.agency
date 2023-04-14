@@ -19,5 +19,5 @@ export const useAppStore = defineStore('users', () => {
     token.value = data;
   };
 
-  return { users, getUsers, upadateUsers, setToken, getToken };
+  return { getUsers, upadateUsers, setToken, getToken };
 });

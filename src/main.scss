@@ -63,6 +63,10 @@ body {
 // .v-input__control {
 //   border-color: red !important;
 // }
+.v-btn--disabled {
+  background-color: rgb(180 180 180) !important;
+  color: white !important;
+}
 #app {
   max-width: 2560px;
   margin: 0 auto;

@@ -4,6 +4,7 @@
     <v-sheet width="300" class="mx-auto">
       <v-form @submit.prevent="submit" ref="formSrc">
         <v-text-field
+          class="my-8"
           variant="outlined"
           v-model="name"
           :rules="rules.nameRules"
@@ -11,6 +12,7 @@
           type="text"
         ></v-text-field>
         <v-text-field
+          class="my-8"
           variant="outlined"
           v-model="email"
           :rules="rules.emailRules"
@@ -19,6 +21,7 @@
         ></v-text-field>
         <v-text-field
           variant="outlined"
+          class="my-8"
           v-model="phone"
           :rules="rules.phoneRules"
           label="Phone"
@@ -40,6 +43,7 @@
 
         <div class="input-file">
           <v-file-input
+            class="my-6"
             :placeholder="'input a file'"
             :rules="rules.empty"
             variant="outlined"
@@ -60,6 +64,7 @@
           :rounded="true"
           color="#f4e041"
           type="submit"
+          :disabled="!isFormValid"
         >
           Sign up
         </v-btn>
@@ -87,6 +92,7 @@ const fileErrors = ref<string[]>([]);
 const positions = ref([{ id: 1, name: 'Worker' }]);
 let fileImg: any = null;
 const formSrc = ref(null);
+const isFormValid = ref<boolean>(false);
 
 const rules = {
   empty: [
@@ -105,6 +111,12 @@ onMounted(() => {
   loadPositionsIds().then((response) => (positions.value = response.positions));
 });
 
+watch(name, (newVal) => checkIfFormValid());
+watch(email, (newVal) => checkIfFormValid());
+watch(phone, (newVal) => checkIfFormValid());
+watch(position, (newVal) => checkIfFormValid());
+//watch(fileImg, (newVal) => console.log(newVal));
+
 function onFileChange(e: any) {
   clearFileInput();
   var files = e.target.files || e.dataTransfer.files;
@@ -117,7 +129,7 @@ function onFileChange(e: any) {
       'Incorrect file type. Must be jpeg/jpg type',
     ];
   }
-  if (size > 10000) {
+  if (size > 5000000) {
     fileErrors.value = [
       ...fileErrors.value,
       'The file size exceeds the maximum allowed(5Mb).',
@@ -125,49 +137,61 @@ function onFileChange(e: any) {
   }
   checkImgDimensions(files[0]);
   console.log(files);
+  checkIfFormValid();
   if (!files.length) return;
 }
 
 function clearFileInput(): void {
   fileImg = null;
   fileErrors.value = [];
+  checkIfFormValid();
 }
 
 function submit(e: SubmitEvent): void {
-  loadToken()
+  loadToken();
   if (!fileImg) {
     fileErrors.value = ['Select a file'];
     return;
   }
-  
+
   if (formSrc.value !== null) {
     const theForm: any = formSrc.value;
     theForm.validate().then((formState: any) => {
       if (formState.valid && fileImg) {
-        loadToken().then((resp: any) => resp.token).then((token: string)=>{
-          addUser(createNewUser(), token)
-        })
-        // createNewUser();
+        loadToken()
+          .then((resp: any) => resp.token)
+          .then((token: string) => {
+            addUser(createNewUser(), token);
+          });
       }
-      console.log('event -> ', formState.valid);
     });
   }
   if (!fileImg) {
     fileErrors.value = ['Select a file'];
   }
-  console.log('fileImg', fileImg);
+  // console.log('fileImg', fileImg);
 }
 
 function createNewUser() {
-  console.log('sendNewUser()');
-  const formData = new FormData()
-  formData.append('name', name.value)
-  formData.append('email', email.value)
-  formData.append('phone', phone.value)
-  formData.append('position_id', position.value)
-  formData.append('photo', fileImg)
-
+  const formData = new FormData();
+  formData.append('name', name.value);
+  formData.append('email', email.value);
+  formData.append('phone', phone.value);
+  formData.append('position_id', position.value);
+  formData.append('photo', fileImg);
   return formData;
+}
+
+function checkIfFormValid() {
+  console.log(rules.nameRules.values)
+  const theForm: any = formSrc.value;
+  theForm.validate().then((formState: any) => {
+    if (formState.valid && fileImg && fileErrors.value.length === 0) {
+      isFormValid.value = true;
+    } else {
+      isFormValid.value = false;
+    }
+  });
 }
 
 function checkImgDimensions(imgSrc: any): void {
@@ -183,6 +207,7 @@ function checkImgDimensions(imgSrc: any): void {
         'The file dimensions too small(70x70 minimum require).',
       ];
     }
+    checkIfFormValid();
   };
 }
 </script>
