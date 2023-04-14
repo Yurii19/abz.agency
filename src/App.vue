@@ -6,25 +6,32 @@
   </v-app>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
+import { defineComponent, onMounted } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
 import MainPage from './layouts/MainPage.vue'
+import { useAppStore } from './store';
 
-export default defineComponent({
-  name: 'App',
+const store = useAppStore();
 
-  components: {
-    HelloWorld,
-    MainPage
-  },
+// export default defineComponent({
+//   name: 'App',
 
-  data () {
-    return {
-      //
-    }
-  },
-})
+  // components: {
+  //   HelloWorld,
+  //   MainPage
+  // },
+  onMounted(()=>{
+  // store.upadateUsers(6);
+});
+
+  // data () {
+  //   return {
+      
+  //     //
+  //   }
+  // },
+// })
 </script>
 <style lang="scss" scoped>
   // body {

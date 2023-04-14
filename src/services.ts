@@ -46,9 +46,6 @@ export const addUser = (formData: any, token: any) => {
     .then((response) => {
       return response.json();
     })
-    .then((data) => {
-      console.log(data);
-    });
 };
 
 const emailPattern =

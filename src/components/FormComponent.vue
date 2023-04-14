@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap mt-16 ">
+  <div class="wrap mt-16">
     <span class="header mb-10">Working with POST request</span>
     <v-sheet width="300" class="mx-auto">
       <v-form @submit.prevent="submit" ref="formSrc">
@@ -107,7 +107,7 @@ const rules = {
 };
 
 onMounted(() => {
-  store.upadateUsers(5);
+  // store.upadateUsers(6);
   loadPositionsIds().then((response) => (positions.value = response.positions));
 });
 
@@ -161,7 +161,7 @@ function submit(e: SubmitEvent): void {
         loadToken()
           .then((resp: any) => resp.token)
           .then((token: string) => {
-            addUser(createNewUser(), token);
+            addUser(createNewUser(), token).then(() => store.upadateUsers(6));
           });
       }
     });

@@ -2,7 +2,7 @@
   <div class="wrap py-16 px-16">
     <span class="header mt-16">Working with GET request</span>
     <div class="users-container">
-      <span class="user mx-6 my-6" v-for="user in store.getUsers" :key="user.id">
+      <span class="user mx-6 my-6" v-for="user in users" :key="user.id">
         <UserCard :user="user" />
       </span>
     </div>
@@ -15,11 +15,14 @@ import { onMounted, ref, watch } from 'vue';
 import UserCard from '../components/UserCard.vue';
 import { useAppStore } from '../store';
 import ButtonComponent from '../components/ButtonComponent.vue';
+import { computed } from '@vue/reactivity';
 
 const store = useAppStore();
+const users = computed(() => store.getUsers)
 
 onMounted(() => {
-  // store.upadateUsers(4);
+
+   store.upadateUsers(4);
 });
 // function getusers(){
 //     console.log()

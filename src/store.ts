@@ -11,6 +11,7 @@ export const useAppStore = defineStore('users', () => {
   const getToken = computed(() => token.value);
   //actions
   function upadateUsers(range: number) {
+    console.log('update Users')
     loadUsers(range).then((resp) => {
       users.value = resp.users;
     });
@@ -19,5 +20,5 @@ export const useAppStore = defineStore('users', () => {
     token.value = data;
   };
 
-  return { getUsers, upadateUsers, setToken, getToken };
+  return { users, getUsers, upadateUsers, setToken, getToken };
 });
