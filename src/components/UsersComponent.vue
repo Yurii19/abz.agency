@@ -6,7 +6,17 @@
         <UserCard :user="user" />
       </span>
     </div>
-    <ButtonComponent :text="'Show more'" />
+    <!-- <ButtonComponent :text="'Show more'" /> -->
+    <v-btn
+      class="elevation-0"
+      :rounded="true"
+      color="#f4e041"
+      type="submit"
+      v-if="showMoreButtonActive"
+      @click="showMoreUsers"
+    >
+      Show more
+    </v-btn>
   </div>
 </template>
 <!-- non-breaking hyphen &#8209; -->
@@ -14,16 +24,41 @@
 import { onMounted, ref, watch } from 'vue';
 import UserCard from '../components/UserCard.vue';
 import { useAppStore } from '../store';
-import ButtonComponent from '../components/ButtonComponent.vue';
 import { computed } from '@vue/reactivity';
 
+const USERS_COUNT: number = 16;
 const store = useAppStore();
-const users = computed(() => store.getUsers)
+const users = computed(() => store.getUsers);
+let shownUsers: number = USERS_COUNT;
+let showMoreButtonActive = ref(true);
+//const local = ref({isShow: false})
 
 onMounted(() => {
+  store.upadateUsers(USERS_COUNT);
+})
 
-   store.upadateUsers(4);
-});
+function showMoreUsers() {
+  const total = store.getTotalUsers;
+  // const dif = total - shownUsers;
+  console.log('total', total, 'shownUsers', shownUsers);
+  const summ = shownUsers + USERS_COUNT;
+  if (total > summ) {
+    shownUsers = shownUsers + USERS_COUNT;
+    console.log('total', total, 'shownUsers', shownUsers);
+    store.upadateUsers(shownUsers);
+  }
+  if(total <= summ) {
+    showMoreButtonActive.value = false;
+    console.log('its over');
+  }
+
+    //
+  }
+
+  //console.log('store.getTotalUsers ', store.getTotalUsers, ' - ', store);
+  //shownUsers = shownUsers + USERS_COUNT;
+ // store.upadateUsers(shownUsers);
+//}
 // function getusers(){
 //     console.log()
 // }
