@@ -35,29 +35,24 @@ let showMoreButtonActive = ref(true);
 
 onMounted(() => {
   store.upadateUsers(USERS_COUNT);
-})
+});
 
 function showMoreUsers() {
-  const total = store.getTotalUsers;
-  // const dif = total - shownUsers;
-  console.log('total', total, 'shownUsers', shownUsers);
-  const summ = shownUsers + USERS_COUNT;
-  if (total > summ) {
+  // const total = store.getTotalUsers;
+  //const summ = shownUsers + USERS_COUNT;
+  if (store.getTotalUsers > shownUsers + USERS_COUNT) {
     shownUsers = shownUsers + USERS_COUNT;
-    console.log('total', total, 'shownUsers', shownUsers);
     store.upadateUsers(shownUsers);
-  }
-  if(total <= summ) {
+  } else {
+    shownUsers = shownUsers + USERS_COUNT;
+    store.upadateUsers(shownUsers);
     showMoreButtonActive.value = false;
-    console.log('its over');
   }
+}
 
-    //
-  }
-
-  //console.log('store.getTotalUsers ', store.getTotalUsers, ' - ', store);
-  //shownUsers = shownUsers + USERS_COUNT;
- // store.upadateUsers(shownUsers);
+//console.log('store.getTotalUsers ', store.getTotalUsers, ' - ', store);
+//shownUsers = shownUsers + USERS_COUNT;
+// store.upadateUsers(shownUsers);
 //}
 // function getusers(){
 //     console.log()
