@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <div class="container">
-      <span class="header">Test assignment for front-end developer</span>
+      <span class="header">Test assignment for front&#8209;end developer</span>
       <br />
       <span class="content"
         >What defines a good front-end developer is one that has skilled

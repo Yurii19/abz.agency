@@ -50,13 +50,6 @@ function showMoreUsers() {
   }
 }
 
-//console.log('store.getTotalUsers ', store.getTotalUsers, ' - ', store);
-//shownUsers = shownUsers + USERS_COUNT;
-// store.upadateUsers(shownUsers);
-//}
-// function getusers(){
-//     console.log()
-// }
 </script>
 
 <style lang="scss" scoped>
